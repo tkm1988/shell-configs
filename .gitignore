@@ -1,3 +1,4 @@
 *
 !.gitignore
 !.emacs.el
+!.bash_profile

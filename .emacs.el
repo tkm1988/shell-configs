@@ -41,5 +41,5 @@
 
 (setq straight-use-package-by-default t)
 
-
+(global-linum-mode t)
 (straight-use-package 'dockerfile-mode)
