@@ -38,8 +38,34 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
-
 (setq straight-use-package-by-default t)
+(use-package git) ;; ensure we can install from git sources
 
 (global-linum-mode t)
-(straight-use-package 'dockerfile-mode)
+
+;;============================
+;;         company
+;;============================
+;; Make         : 2019/04/19
+;; Last Modifiy : 2018/04/19
+;; Note         : Attempt to use auto-complite by company.
+
+(straight-use-package 'company)
+(use-package company)
+(global-company-mode)
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 2)
+(setq company-selection-wrap-around t)
+
+;;============================
+;;          elpy
+;;============================
+;; Make         : 2019/04/19
+;; Last Modifiy : 2018/04/19
+;; Note         : elpy is "Emacs Python Development Environment"
+
+(use-package elpy)
+(elpy-enable)
+
+(use-package dockerfile-mode)
+(use-package typescript-mode)

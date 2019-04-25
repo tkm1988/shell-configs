@@ -13,5 +13,5 @@ fi
 #Original Aliases
 alias ls='ls -aG'
 alias ll='ls -alG'
-alias emacs='/usr/local/Cellar/emacs/26.1_1/bin/emacs'
+alias emacs='/usr/local/Cellar/emacs/26.2/bin/emacs'
 alias rm='rmtrash'
