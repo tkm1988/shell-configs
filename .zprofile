@@ -31,6 +31,23 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 setopt correct
 
+## Prompt Setting
+
+autoload -Uz colors
+colors
+
+### vcs Setting
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:git:*' check-for-changes true #formats 設定項目で %c,%u が使用可
+zstyle ':vcs_info:git:*' stagedstr "%F{green}!" #commit されていないファイルがある
+zstyle ':vcs_info:git:*' unstagedstr "%F{magenta}+" #add されていないファイルがある
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f" #通常
+zstyle ':vcs_info:*' actionformats '[%b|%a]' #rebase 途中,merge コンフリクト等 formats 外の表示
+precmd () { vcs_info }
+PROMPT="%{${fg[green]}%}%n@%m : %c %{${reset_color}%} %{${fg[red]}%}%# %{${reset_color}%}" #  ${vcs_info_msg_0_}
+RPROMPT="%{${fg[green]}%}[%D %t]%{${reset_color}%}"
+
 # Pyemv's Settings
 
 export PYENV_ROOT=${HOME}/.pyenv
@@ -46,9 +63,12 @@ alias ls='ls -aG'
 alias ll='ls -alG'
 alias emacs='/usr/local/Cellar/emacs/26.3/bin/emacs'
 alias rm='rmtrash'
+alias svn='/usr/local/bin/svn'
 
 # Original PATH
 
 ## homebrew
 
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
