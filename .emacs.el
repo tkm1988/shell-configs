@@ -49,8 +49,13 @@
 ;; Note         : Attempt to use straight.el when you install packages
 ;; Ref          : https://nukosuke.hatenablog.jp/entry/straight-el
 
-(let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
-      (bootstrap-version 3))
+(setq straight-recipes-gnu-elpa-use-mirror t
+      straight-check-for-modifications     '(find-when-checking))
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
@@ -81,6 +86,24 @@
 (setq company-selection-wrap-around t)
 
 ;;============================
+;;         magit
+;;============================
+;; Make         : 2020/04/12
+;; Last Modifiy : 2020/04/12
+;; Note         : git plug-in
+;; Ref          : https://magit.vc/manual/
+
+;; DEBUG : First, it must install magit/transient.
+(straight-use-package
+ '(transient :type git :host github :repo "magit/transient"))
+
+;; Install from github to use straight.el
+(straight-use-package
+ '(magit :type git :host github :repo "magit/magit"))
+(use-package magit)
+
+
+;;============================
 ;;        Apex-mode
 ;;============================
 ;; Make         : 2020/04/11
@@ -99,7 +122,7 @@
 ;; Ref          : https://www.m3tech.blog/entry/emacs-web-service
 
 ;; Install from github to use straight.el
-(straight-use-package
+ (straight-use-package
  '(flycheck :type git :host github :repo "flycheck/flycheck"))
 
 ;; Enable the plug-in "flycheck"
