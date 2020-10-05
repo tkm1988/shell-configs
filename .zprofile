@@ -61,7 +61,7 @@ fi
 
 alias ls='ls -aG'
 alias ll='ls -alG'
-alias emacs='/usr/local/Cellar/emacs/26.3/bin/emacs'
+alias emacs='/usr/local/Cellar/emacs/27.1/bin/emacs'
 alias rm='rmtrash'
 alias svn='/usr/local/bin/svn'
 
