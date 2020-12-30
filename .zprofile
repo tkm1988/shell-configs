@@ -61,7 +61,7 @@ fi
 
 alias ls='ls -aG'
 alias ll='ls -alG'
-alias emacs='/usr/local/Cellar/emacs/27.1/bin/emacs'
+alias emacs='/usr/local/bin/emacs'
 alias rm='rmtrash'
 alias svn='/usr/local/bin/svn'
 
@@ -72,3 +72,13 @@ alias svn='/usr/local/bin/svn'
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+
+### If you need to have openssl@1.1 first in your PATH run:
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+### For compilers to find openssl@1.1 you may need to set:
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include $CPPFLAGS"
+
+### For pkg-config to find openssl@1.1 you may need to set:
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
