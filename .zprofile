@@ -15,8 +15,7 @@ setopt HIST_NO_STORE
 
 ## auto-complete
 
-autoload -Uz compinit
-compinit -u
+autoload -Uz compinit && compinit -u
 
 if [ -e /usr/local/share/zsh-completions ]; then
   fpath=(/usr/local/share/zsh-completions $fpath)
@@ -32,23 +31,11 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 setopt correct
 
 ## Prompt Setting
+#
+# These settings are written in .zshrc .
+#
 
-autoload -Uz colors
-colors
-
-### vcs Setting
-
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' check-for-changes true #formats 設定項目で %c,%u が使用可
-zstyle ':vcs_info:git:*' stagedstr "%F{green}!" #commit されていないファイルがある
-zstyle ':vcs_info:git:*' unstagedstr "%F{magenta}+" #add されていないファイルがある
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f" #通常
-zstyle ':vcs_info:*' actionformats '[%b|%a]' #rebase 途中,merge コンフリクト等 formats 外の表示
-precmd () { vcs_info }
-PROMPT="%{${fg[green]}%}%n@%m : %c %{${reset_color}%} %{${fg[red]}%}%# %{${reset_color}%}" #  ${vcs_info_msg_0_}
-RPROMPT="%{${fg[green]}%}[%D %t]%{${reset_color}%}"
-
-# Pyemv's Settings
+# Pyenv's Settings
 
 export PYENV_ROOT=${HOME}/.pyenv
 if [ -d "${PYENV_ROOT}" ]; then
