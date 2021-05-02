@@ -263,10 +263,10 @@
 ;;     git-gutter-plus
 ;;============================
 ;; Make         : 2021/04/30
-;; Last Modifiy : 2021/04/30
+;; Last Modifiy : 2021/05/02
 ;; Note         : -
 
-(straight-use-package 'git-gutter-plus)
+(straight-use-package 'git-gutter+)
 
 ;; Always enable
 (global-git-gutter+-mode 1)
