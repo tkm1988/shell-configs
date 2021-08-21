@@ -16,3 +16,7 @@ zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f" #通常
 zstyle ':vcs_info:*' actionformats '[%b|%a]' #rebase 途中,merge コンフリクト等 formats 外の表示
 
 PROMPT=$PROMPT'${vcs_info_msg_0_} '
+
+## auto-complete
+
+autoload -U compinit && compinit

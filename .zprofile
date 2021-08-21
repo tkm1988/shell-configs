@@ -14,10 +14,6 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_NO_STORE
 
-## auto-complete
-
-autoload -Uz compinit && compinit -u
-
 if [ -e /usr/local/share/zsh-completions ]; then
   fpath=(/usr/local/share/zsh-completions $fpath)
 fi
