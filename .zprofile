@@ -1,3 +1,4 @@
+
 # zsh Settings
 
 ## language
@@ -40,9 +41,12 @@ setopt correct
 export PYENV_ROOT=${HOME}/.pyenv
 if [ -d "${PYENV_ROOT}" ]; then
     export PATH=${PYENV_ROOT}/bin:$PATH
-    eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
     eval "$(pyenv virtualenv-init -)"
 fi
+
+# Anyenv Settings
+eval "$(anyenv init -)"
 
 # Original Aliases
 
@@ -69,3 +73,9 @@ export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include $CPPFLAGS"
 
 ### For pkg-config to find openssl@1.1 you may need to set:
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+
+### For Node.js
+export NODE_PATH=$(npm root -g) node
+
+### For tmux
+export PATH=$HOME/.tmux/bin:$PATH
