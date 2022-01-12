@@ -5,6 +5,28 @@
 
 export LANG=ja_JP.UTF-8
 
+# Original PATH
+
+## homebrew
+
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+
+### If you need to have openssl@1.1 first in your PATH run:
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+### For compilers to find openssl@1.1 you may need to set:
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include $CPPFLAGS"
+
+### For pkg-config to find openssl@1.1 you may need to set:
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+
+### For tmux
+export PATH=$HOME/.tmux/bin:$PATH
+
 ## history
 
 setopt HIST_IGNORE_DUPS
@@ -44,34 +66,14 @@ fi
 # Anyenv Settings
 eval "$(anyenv init -)"
 
+## For Node.js
+export NODE_PATH=$(npm root -g) node
+
 # Original Aliases
 
 alias ls='ls -aG'
 alias ll='ls -alG'
-alias emacs='/usr/local/bin/emacs'
-alias rm='rmtrash'
-alias svn='/usr/local/bin/svn'
+alias emacs='/opt/homebrew/bin/emacs'
+alias rm='trash'
+alias svn='/opt/homebrew/bin/svn'
 
-# Original PATH
-
-## homebrew
-
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-
-### If you need to have openssl@1.1 first in your PATH run:
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-
-### For compilers to find openssl@1.1 you may need to set:
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include $CPPFLAGS"
-
-### For pkg-config to find openssl@1.1 you may need to set:
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
-
-### For Node.js
-export NODE_PATH=$(npm root -g) node
-
-### For tmux
-export PATH=$HOME/.tmux/bin:$PATH
