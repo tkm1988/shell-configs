@@ -58,6 +58,7 @@ alias svn='/usr/local/bin/svn'
 
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 
 ### If you need to have openssl@1.1 first in your PATH run:
