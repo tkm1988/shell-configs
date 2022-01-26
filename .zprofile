@@ -62,6 +62,7 @@ if [ -d "${PYENV_ROOT}" ]; then
     eval "$(pyenv init --path)"
     eval "$(pyenv virtualenv-init -)"
 fi
+export PIPENV_VENV_IN_PROJECT=true
 
 # Anyenv Settings
 eval "$(anyenv init -)"
