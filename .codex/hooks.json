@@ -1,0 +1,88 @@
+{
+  "hooks": {
+    "sessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'codex-hooks.json (apm hello-hook) fired on sessionStart'"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sagari/.tmux/bin/codex-continuity-record.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sagari/.tmux/bin/claude-agent-state.sh working"
+          },
+          {
+            "type": "command",
+            "command": "/Users/sagari/.tmux/bin/codex-continuity-record.sh"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sagari/.tmux/bin/claude-agent-state.sh blocked"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sagari/.tmux/bin/claude-agent-state.sh working"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sagari/.tmux/bin/claude-agent-state.sh done"
+          }
+        ]
+      }
+    ],
+    "Interrupt": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sagari/.tmux/bin/claude-agent-state.sh done"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sagari/.tmux/bin/claude-agent-state.sh clear"
+          }
+        ]
+      }
+    ]
+  }
+}

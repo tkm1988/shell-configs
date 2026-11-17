@@ -30,7 +30,7 @@ get_battery() {
 # is_charging returns true if the battery is charging
 is_charging() {
     if has "pmset"; then
-        pmset -g ps | grep -E "Battery Power|charged" >/dev/null 2>&1
+        pmset -g ps | grep -E "Battery Power|charged|AC Power" >/dev/null 2>&1
         if [ $? -eq 0  ]; then
             return 1
         else

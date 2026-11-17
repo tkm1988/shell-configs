@@ -52,13 +52,6 @@
 #                                     --ssid=<arg>      Specify SSID when creating a PSK
 #    -h        --help               Show this help
 #
-airport_path="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
-
-# Check if airport is available
-if [[ ! -x $airport_path ]]; then
-    echo "$airport_path: not found" 1>&2
-    exit 1
-fi
 
 # The Unicode Block Elements
 # | Unicode | Block |           Name             |    Note    |
@@ -83,19 +76,77 @@ fi
 #
 signals=(▂ ▅ ▇)
 
-# Get the wifi information and then set it to an info array
-info=( $(eval "$airport_path" --getinfo | grep -E "^ *(agrCtlRSSI|state|lastTxRate|SSID):" | awk '{print $2}') )
-if [[ ${#info[@]} -eq 0 ]]; then
-    echo "offline"
+# system_profiler SPAirPortDataType の出力を取得
+# このコマンドはmacOSでのみ動作します
+WIFI_INFO=$(system_profiler SPAirPortDataType 2>/dev/null)
+
+# 各情報の初期化
+SSID=""
+SIGNAL=""
+TRANSMIT_RATE=""
+STATUS=""
+
+# 1. Statusの取得
+# "Status: Connected" の行を見つけ、2番目のフィールドを取得
+STATUS=$(echo "$WIFI_INFO" | grep -m 1 "Status:" | awk '{print $2}')
+
+# 2. SSIDの取得
+# "Current Network Information:" の次の行がSSID
+# SPAirPortDataTypeの出力でCurrent Network Information:の直後にSSIDが来ることを想定
+# ただし、その後にPHY ModeやChannel、Network Typeなどの詳細行が続く可能性があるため、
+# SSIDのみの行を正確に抽出する
+SSID_RAW=$(echo "$WIFI_INFO" | awk '/Current Network Information:/ {getline; print}')
+# SSID_RAWから不要な行を除去し、SSID本体のみを抽出
+# SSIDの行は通常、他の詳細情報よりもインデントが浅い、またはコロンで終わる
+# 今回の例ではMY_OFFICE_WIFI:の後にNetwork Typeが続くので、
+# SSIDはコロンで終わる行として特定する
+SSID=$(echo "$SSID_RAW" | grep -E '^[[:space:]]*[^:]+:$' | sed -e 's/^[[:space:]]*//' -e 's/:$//' -e 's/\s*$//')
+
+# 3. Signalの取得
+# "Signal / Noise: -60 dBm / -93 dBm" の行から値を取得
+# -m 1 は最初に見つかった行のみを対象にする
+# awkのフィールドデリミタをスペースにし、'-'から始まるフィールドを抽出
+SIGNAL=$(echo "$WIFI_INFO" | grep -m 1 "Signal / Noise:" | awk '{
+    for (i=1; i<=NF; i++) {
+        if ($i ~ /^-?[0-9]+/) { # ハイフンまたは数字で始まるフィールドを検索
+            print $i;
+            exit;
+        }
+    }
+}')
+
+
+# 4. Transmit Rateの取得
+# "Transmit Rate:" の行から値を取得
+# -m 1 は最初に見つかった行のみを対象にする
+TRANSMIT_RATE=$(echo "$WIFI_INFO" | grep -m 1 "Transmit Rate:" | awk '{print $3}')
+
+# 結果の表示
+if [ ! "$STATUS" = "Connected" ] && [ ! -n "$SSID" ]; then
+    echo "OFFLINE"
     exit 1
 fi
 
+
+# Check if airport is available
+# if [[ ! -x $airport_path ]]; then
+#     echo "$airport_path: not found" 1>&2
+#     exit 1
+# fi
+
+# Get the wifi information and then set it to an info array
+# info=( $(eval "$airport_path" --getinfo | grep -E "^ *(agrCtlRSSI|state|lastTxRate|SSID):" | awk '{print $2}') )
+# if [[ ${#info[@]} -eq 0 ]]; then
+#     echo "offline"
+#     exit 1
+# fi
+
 # cut out a needed information from the info
 # reference: http://osxdaily.com/2007/01/18/airport-the-little-known-command-line-wireless-utility/
-rssi="${info[0]}"   # strength of wifi wave
-stat="${info[1]}"   # whether wifi is available
-rate="${info[2]}"   # bandwidth of wifi wave
-ssid="${info[3]}"   # wifi ssid name
+rssi="${SIGNAL}"          # strength of wifi wave
+stat="${STATUS}"          # whether wifi is available
+rate="${TRANSMIT_RATE}"   # bandwidth of wifi wave
+ssid="${SSID}"            # wifi ssid name
 
 # Determine the signal from rssi of wifi
 signal=""
@@ -123,7 +174,7 @@ done
 
 # If the wifi rate (wifi bandwidth) is unavailable,
 if [ "$rate" = 0 ]; then
-    echo "no_wifi"
+    echo "NO Wi-Fi"
     exit 1
 fi
 

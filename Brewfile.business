@@ -1,81 +1,214 @@
-tap "adoptopenjdk/openjdk"
-tap "heroku/brew"
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
-tap "homebrew/core"
 tap "homebrew/services"
-tap "postgresapp/postgresapp", "https://github.com/PostgresApp/PostgresApp.git"
-tap "vmware-tanzu/tanzu"
-brew "anyenv"
+tap "launchdarkly/tap"
+tap "microsoft/apm", trusted: true
+tap "rbenv/tap", trusted: true
+# Run your GitHub Actions locally
+brew "act"
+# GNU multiple precision arithmetic library
+brew "gmp"
+# Static checker for GitHub Actions workflow files
+brew "actionlint"
+# Spell checker with better logic than ispell
 brew "aspell"
+# Library for command-line editing
+brew "readline"
+# Automatic configure script builder
+brew "autoconf"
+# Official Amazon AWS command-line interface
 brew "awscli"
-brew "azure-cli"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-brew "connect"
-brew "coreutils"
-brew "dos2unix"
+# Core application library for C
+brew "glib"
+# YAML Parser
+brew "libyaml"
+# Tool to obtain certs from Let's Encrypt and autoenable HTTPS
+brew "certbot"
+# Diff that understands syntax
+brew "difftastic"
+# GNU Emacs text editor
 brew "emacs"
+# Simple, fast and user-friendly alternative to find
 brew "fd"
-brew "firebase-cli"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU awk utility
+brew "gawk"
+# Postgres C API library
+brew "libpq"
+# GitHub command-line tool
 brew "gh"
+# Distributed revision control system
 brew "git"
-brew "git-secret"
-brew "openjdk"
-brew "gradle"
-brew "harfbuzz"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# Framework for layout and rendering of i18n text
+brew "pango"
+# Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-brew "imagemagick"
-brew "iproute2mac"
+# CLI for Heroku
+brew "heroku"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
-brew "maven"
-brew "nkf"
-brew "nmap"
-brew "openjdk@11"
+# CLI for managing LaunchDarkly feature flags
+brew "ldcli"
+# Terminal Markdown previewer with a GUI-like experience
+brew "leaf-markdown-viewer"
+# Move files and folders to the trash
+brew "macos-trash", link: true
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
+# PostgreSQL syntax beautifier
+brew "pgformatter"
+# Adds support for geographic objects to PostgreSQL
+brew "postgis"
+# Object-relational database system
+brew "postgresql@14", restart_service: :changed
+# Framework for managing multi-language pre-commit hooks
+brew "pre-commit"
+# Password generator
 brew "pwgen"
-brew "pyenv"
-brew "pyenv-virtualenv"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
-brew "sevenzip"
-brew "subversion"
-brew "tidy-html5"
-brew "tig"
+# Package Management Solution for Python
+brew "rye"
+# Fast, configurable, shell plugin manager
+brew "sheldon"
+# Editor of encrypted files
+brew "sops"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Terraform version manager inspired by rbenv
+brew "tfenv"
+# Terminal multiplexer
 brew "tmux"
-brew "trash"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
-brew "zinit"
-brew "zsh-autosuggestions"
-brew "zsh-completions"
-brew "zsh-syntax-highlighting"
-brew "heroku/brew/heroku"
-cask "abyssoft-teleport"
-cask "alacritty"
-cask "android-studio"
-cask "cheatsheet"
-cask "clipy"
-cask "cmake"
+# Vulnerability scanner for container images, file systems, and Git repos
+brew "trivy"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Internet file retriever
+brew "wget"
+# Friendly and fast tool for sending HTTP requests
+brew "xh"
+# Agent Package Manager (APM): The NPM for AI-Native Development
+brew "microsoft/apm/apm"
+# Cryptography and SSL/TLS Toolkit
+brew "rbenv/tap/openssl@1.1"
+# View, print, and comment on PDF documents
+cask "adobe-acrobat-reader"
+# Application launcher and productivity software
+cask "alfred"
+# Japanese input method
+cask "azookey"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# Universal database tool and SQL client
 cask "dbeaver-community"
-cask "discord"
-cask "docker"
-cask "font-hackgen"
-cask "font-ricty-diminished"
-cask "intellij-idea-ce"
-cask "iterm2"
-cask "jetbrains-toolbox"
-cask "keepassx"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
+# Web browser
+cask "firefox"
+cask "font-google-sans-code"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Cross-platform Git credential storage for multiple hosting providers
+cask "git-credential-manager"
+# Web browser
+cask "google-chrome"
+# Client for the Google Drive storage service
+cask "google-drive"
+# Clipboard manager
+cask "maccy"
+# Zip archiver
 cask "macwinzipper"
-cask "microsoft-auto-update"
-cask "microsoft-edge"
-cask "microsoft-teams"
-cask "owasp-zap"
-cask "postman"
-cask "quicksilver"
+# Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
+# Team communication and collaboration software
 cask "slack"
-cask "springtoolsuite"
+# CSV editor
+cask "smoothcsv"
+# Native GUI tool for relational databases
 cask "tableplus"
-cask "wine-stable"
-cask "xquartz"
+# Lightweight database management tool
+cask "tabularis"
+# Open-source code editor
+cask "visual-studio-code"
+# Video communication and virtual meeting platform
 cask "zoom"
-cask "zulu11"
+vscode "3w36zj6.textlint"
+vscode "42crunch.vscode-openapi"
+vscode "aaron-bond.better-comments"
+vscode "amazonwebservices.aws-toolkit-vscode"
+vscode "anthropic.claude-code"
+vscode "bibhasdn.django-html"
+vscode "bierner.markdown-mermaid"
+vscode "charliermarsh.ruff"
+vscode "continue.continue"
+vscode "dbaeumer.vscode-eslint"
+vscode "docker.docker"
+vscode "donjayamanne.githistory"
+vscode "eamodio.gitlens"
+vscode "esbenp.prettier-vscode"
+vscode "foxundermoon.shell-format"
+vscode "github.vscode-github-actions"
+vscode "github.vscode-pull-request-github"
+vscode "grapecity.gc-excelviewer"
+vscode "gruntfuggly.todo-tree"
+vscode "hashicorp.terraform"
+vscode "jacano.vscode-pnpm"
+vscode "johnpapa.vscode-peacock"
+vscode "loilo.snazzy-light"
+vscode "mechatroner.rainbow-csv"
+vscode "mekusuri.jsonl-tool"
+vscode "mhutchie.git-graph"
+vscode "ms-azuretools.vscode-containers"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-ceintl.vscode-language-pack-ja"
+vscode "ms-python.black-formatter"
+vscode "ms-python.debugpy"
+vscode "ms-python.flake8"
+vscode "ms-python.isort"
+vscode "ms-python.pylint"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-python.vscode-python-envs"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode.makefile-tools"
+vscode "ms-vscode.vscode-chat-customizations-evaluations"
+vscode "ms-vsliveshare.vsliveshare"
+vscode "njpwerner.autodocstring"
+vscode "oderwat.indent-rainbow"
+vscode "oxc.oxc-vscode"
+vscode "pkief.material-icon-theme"
+vscode "rangav.vscode-thunder-client"
+vscode "redhat.vscode-yaml"
+vscode "ryanluker.vscode-coverage-gutters"
+vscode "saoudrizwan.claude-dev"
+vscode "shd101wyy.markdown-preview-enhanced"
+vscode "shopify.ruby-lsp"
+vscode "streetsidesoftware.code-spell-checker"
+vscode "tamasfe.even-better-toml"
+vscode "techer.open-in-browser"
+vscode "timonwong.shellcheck"
+vscode "tomoki1207.pdf"
+vscode "usernamehw.errorlens"
+vscode "wmaurer.change-case"
+vscode "yzhang.markdown-all-in-one"
+cargo "gitui"
+npm "aws-cdk"
+npm "corepack"
