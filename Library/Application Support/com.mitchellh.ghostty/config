@@ -1,0 +1,37 @@
+shell-integration = zsh
+shell-integration-features = ssh-env,ssh-terminfo
+
+theme = dark:Snazzy,light:solarized-dark
+unfocused-split-fill = #000000
+alpha-blending = linear-corrected
+
+# コメント等の低コントラスト色（パレット8番は背景比 2.2 程度）を自動補正する
+minimum-contrast = 3
+
+background-opacity = 0.9
+window-decoration = true
+window-save-state = always
+
+cursor-opacity = 0.7
+cursor-style = block
+mouse-hide-while-typing = true
+
+scrollback-limit = 50000000
+bell-features = system,attention,title
+
+macos-titlebar-style = tabs
+
+quick-terminal-position = top
+keybind = global:cmd+shift+alt+space=toggle_quick_terminal
+
+font-family = UDEV Gothic NF
+font-feature = -dlig
+font-feature = -liga
+font-size = 16
+
+macos-option-as-alt = left
+keybind = shift+enter=text:\x1b\r
+
+# タブの並び替え（Linux風）
+keybind = ctrl+shift+left=move_tab:-1
+keybind = ctrl+shift+right=move_tab:1
