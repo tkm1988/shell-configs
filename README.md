@@ -17,6 +17,7 @@ macOS で使っているシェル・ターミナル・エディタの設定と�
 | Emacs           | `.emacs.d/`                                                | Emacs の設定と操作の手引き                                                    |
 | AI エージェント | `.claude/tmux-hooks.json`                                  | Claude Code の hook のうち、tmux 連携に使うもの                               |
 | AI エージェント | `.codex/hooks.json`                                        | Codex の hook                                                                 |
+| AI エージェント | `.claude/rules/`                                           | Claude Code の個人ルール（`~/.claude/rules/` に置く）                         |
 | Homebrew        | `Brewfile.*`                                               | 端末ごとのパッケージ一覧                                                      |
 | Homebrew        | `brewrenewal.sh`                                           | Homebrew のパッケージをまとめて更新するスクリプト                             |
 | iTerm2          | `iterm2-profile.json`                                      | iTerm2 のプロファイル（今は Ghostty を使っているため更新していません）        |
@@ -25,6 +26,7 @@ macOS で使っているシェル・ターミナル・エディタの設定と�
 
 - `~/.zshrc.local`: 会社の設定など、公開できないものを置きます。`.zshrc` は、このファイルがあるときだけ読み込みます。
 - `~/.claude/settings.json`: hook 以外の個人設定も多く含むため、tmux 連携の hook だけを `.claude/tmux-hooks.json` に分けています。
+- `~/.claude/rules/` のうち APM で配られるもの（`hello-instruction.md`）: 自分で書いたルールではないため含めません。
 - `~/.tmux/plugins/`: 次の「tmux」の手順で、別に入れます。
 
 ## セットアップ
